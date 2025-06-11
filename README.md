@@ -9,7 +9,7 @@ The system is developed using .NET 8 (ASP.NET Web API) for the backend, Angular 
 - List all **vehicles**
 - Add new **Bus**, **Car** and **Truck**
 - Edit existing records
-- Filter and search of vehicles
+- Filter and search for vehicles
 
 ## 🛠 Technologies Used
 
