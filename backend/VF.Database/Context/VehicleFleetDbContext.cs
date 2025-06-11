@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VF.Database.Context.DbEntities;
+using VF.Database.Context.EntityMap;
 
 namespace VF.Database.Context
 {
@@ -10,5 +11,11 @@ namespace VF.Database.Context
 
         public VehicleFleetDbContext(DbContextOptions<VehicleFleetDbContext> options) 
             : base(options) { }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new VehicleTypeEntityMap());
+            modelBuilder.ApplyConfiguration(new VehicleEntityMap());
+        }
     }
 }

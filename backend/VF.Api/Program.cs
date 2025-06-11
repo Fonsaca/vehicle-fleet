@@ -21,15 +21,15 @@ builder.Services.AddAutoMapper(typeof(VehicleApplication).Assembly);
 builder.Services.AddAutoMapper(typeof(VehicleRepository).Assembly);
 
 builder.Services.AddScoped<IVehicleApplication, VehicleApplication>();
+builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 app.UseHttpsRedirection();
 

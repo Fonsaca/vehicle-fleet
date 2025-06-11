@@ -33,7 +33,8 @@ namespace VF.Database.Features.Vehicles.Repositories
         {
             var vehicleToUpdate = _autoMapper.Map<VehicleEntity>(vehicle);
 
-            var vehicleDb = await _context.Vehicles.FindAsync(vehicle.ChassisId, cancellationToken);
+            var vehicleDb = await _context.Vehicles
+                .FirstOrDefaultAsync(x => x.ChassisSerie == vehicle.ChassisId.Serie && x.ChassisNumber == vehicle.ChassisId.Number, cancellationToken);
 
             if (vehicleDb == default)
                 throw new KeyNotFoundException("Vehicle not found");
@@ -45,9 +46,10 @@ namespace VF.Database.Features.Vehicles.Repositories
             await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<Vehicle> FindAsync(ChassisId id, CancellationToken cancellationToken)
+        public async Task<Vehicle?> FindAsync(ChassisId id, CancellationToken cancellationToken)
         {
-            var vehicle  = await _context.Vehicles.FindAsync(id, cancellationToken);
+            var vehicle  = await _context.Vehicles
+                .FirstOrDefaultAsync(x => x.ChassisSerie == id.Serie && x.ChassisNumber == id.Number, cancellationToken);
 
             return _autoMapper.Map<Vehicle>(vehicle);
         }

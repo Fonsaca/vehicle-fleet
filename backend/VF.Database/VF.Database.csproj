@@ -14,10 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Vehicles\Converters\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\VF.Domain\VF.Domain.csproj" />
   </ItemGroup>
 

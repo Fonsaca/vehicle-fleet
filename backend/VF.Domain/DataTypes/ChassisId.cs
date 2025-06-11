@@ -2,9 +2,9 @@
 {
     public struct ChassisId
     {
-        public string Serie;
+        public string Serie { get; set; }
 
-        public UInt32 Number;
+        public UInt32 Number { get; set; }
     }
 
     

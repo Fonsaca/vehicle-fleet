@@ -6,7 +6,7 @@ namespace VF.Domain.Features.Vehicles.Repositories
     public interface IVehicleRepository
     {
 
-        Task<Vehicle> FindAsync(ChassisId id, CancellationToken cancellationToken);
+        Task<Vehicle?> FindAsync(ChassisId id, CancellationToken cancellationToken);
 
         Task<List<Vehicle>> GetVehiclesAsync(CancellationToken cancellationToken);
 

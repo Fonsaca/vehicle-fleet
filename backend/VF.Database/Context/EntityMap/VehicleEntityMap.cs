@@ -9,7 +9,7 @@ namespace VF.Database.Context.EntityMap
         public void Configure(EntityTypeBuilder<VehicleEntity> builder)
         {
 
-            builder.ToTable("VehicleType");
+            builder.ToTable("Vehicle");
             builder.HasKey(k => new { k.ChassisSerie, k.ChassisNumber });
             builder.Property(p => p.Color).IsRequired();
 
@@ -17,6 +17,14 @@ namespace VF.Database.Context.EntityMap
                 .WithMany()
                 .HasForeignKey(fk => fk.Type);
 
+            builder.HasData([
+                    new VehicleEntity(){
+                        Type = "Bus",
+                        ChassisNumber = 1,
+                        ChassisSerie = "B0001",
+                        Color = "Red"
+                    }
+                ]);
         }
     }
 }

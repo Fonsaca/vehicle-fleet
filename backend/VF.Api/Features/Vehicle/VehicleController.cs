@@ -45,7 +45,7 @@ namespace VF.Api.Features.Vehicle
             return response;
         }
 
-        [HttpGet(Name = "FindVehicle")]
+        [HttpGet("serie/{chassisSerie}/number/{chassisNumber}", Name = "FindVehicle")]
         public async Task<ResponseApi<VehicleDto>> FindVehicle(string chassisSerie, UInt32 chassisNumber, CancellationToken cancellationToken)
         {
             ResponseApi<VehicleDto> response;
@@ -58,7 +58,7 @@ namespace VF.Api.Features.Vehicle
                 };
                 var vehicle = await _application.FindAsync(id,cancellationToken);
 
-                if(vehicle != default)
+                if(vehicle == default)
                     response = new ResponseApi<VehicleDto>(HttpStatusCode.OK, "Vehicle not found");
                 else
                     response = new ResponseApi<VehicleDto>(HttpStatusCode.OK, "Success", [vehicle]);

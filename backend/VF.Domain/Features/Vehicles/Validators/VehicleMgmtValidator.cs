@@ -15,7 +15,7 @@ namespace VF.Domain.Features.Vehicles.Validators
             _repository = repository;
 
             RuleFor(r => r.ChassisId)
-                .NotEmpty().WithMessage("Chassis Id must be informed")
+                .Must(id => !id.Equals(new ChassisId())).WithMessage("Chassis Id must be informed")
                 .MustAsync(MustBeUnique).WithMessage("Chassis Id must be unique");
 
             RuleFor(r => r.Type).NotEmpty().WithMessage("Vehicle type must be informed");

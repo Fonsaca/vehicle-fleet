@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VF.Domain.DataTypes;
+﻿using VF.Domain.DataTypes;
 
 namespace VF.Domain.Models
 {
@@ -13,7 +7,6 @@ namespace VF.Domain.Models
 
         public ChassisId ChassisId { get; set; }
 
-        [Required()]
         public string Color { get; set; }
 
         public abstract string Type { get; }
