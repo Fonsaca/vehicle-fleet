@@ -1,0 +1,24 @@
+<strong>Search & Edit</strong>
+<div class="flex align-items-end pt-2 mb-1">
+
+     <div class="flex flex-column">
+        <label>Chassis Serie</label>
+        <input pInputText type="text" [(ngModel)]="chassisSerie" />
+    </div>
+
+    <div class="flex flex-column ml-2">
+        <label>Chassis Number</label>
+        <input pInputText type="number" min="0" max="4294967295" [(ngModel)]="chassisNumber"/>
+    </div>
+
+    <button pButton 
+            type="button" 
+            label="Search" 
+            icon="pi pi-search" 
+            class="p-button-info ml-2"
+            (click)="search(chassisSerie, chassisNumber)"
+            *ngIf="!loading()"></button>
+
+    <loading *ngIf="loading()"></loading>
+
+</div>

@@ -1,0 +1,40 @@
+
+<p-dialog [(visible)]="showing" [modal]="true" dismissableMask="false">
+
+    <p-header>
+        Edit a Vehicle
+    </p-header>
+
+    <form class="modal-size flex flex-column relative" [formGroup]="form" (ngSubmit)="edit()">
+
+        <div class="flex flex-column">
+            <label>Chassis Serie</label>
+            <input readonly pInputText type="text" formControlName="chassisSerie" />
+        </div>
+
+        <div class="flex flex-column" >
+            <label>Chassis Number</label>
+            <input readonly pInputText type="number" min="0" max="4294967295" formControlName="chassisNumber" />
+        </div>
+
+        <div class="flex flex-column" [ngClass]="{'fg-danger': isInvalid(formColor)}">
+            <label>Color</label>
+            <p-dropdown [options]="colors" formControlName="color" styleClass="w-full" />
+            <div *ngIf="isInvalid(formColor)">
+                <small *ngIf="formColor?.errors?.['required']" >Color is required.</small>
+            </div>
+        </div>
+        
+        <div class="flex justify-content-end pt-4">
+            <button pButton type="submit" 
+                    icon="pi pi-check" 
+                    class="p-button-success ml-3" 
+                    label="Create"
+                    *ngIf="!loading()"></button>
+            
+            <loading *ngIf="loading()"></loading>
+        </div>
+        
+    </form>
+
+</p-dialog>

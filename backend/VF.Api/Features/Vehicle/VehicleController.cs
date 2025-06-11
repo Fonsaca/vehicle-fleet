@@ -27,7 +27,7 @@ namespace VF.Api.Features.Vehicle
 
 
         [HttpGet(Name = "GetVehicles")]
-        public async Task<ResponseApi<VehicleDto>> GetVehicles(CancellationToken cancellationToken)
+        public async Task<ActionResult<ResponseApi<VehicleDto>>> GetVehicles(CancellationToken cancellationToken)
         {
             ResponseApi<VehicleDto> response;
             try
@@ -42,11 +42,11 @@ namespace VF.Api.Features.Vehicle
                 response = new ResponseApi<VehicleDto>(HttpStatusCode.InternalServerError, message);
             }
 
-            return response;
+            return StatusCode((int) response.StatusCode, response);
         }
 
         [HttpGet("serie/{chassisSerie}/number/{chassisNumber}", Name = "FindVehicle")]
-        public async Task<ResponseApi<VehicleDto>> FindVehicle(string chassisSerie, UInt32 chassisNumber, CancellationToken cancellationToken)
+        public async Task<ActionResult<ResponseApi<VehicleDto>>> FindVehicle(string chassisSerie, UInt32 chassisNumber, CancellationToken cancellationToken)
         {
             ResponseApi<VehicleDto> response;
             try
@@ -70,18 +70,18 @@ namespace VF.Api.Features.Vehicle
                 response = new ResponseApi<VehicleDto>(HttpStatusCode.InternalServerError, message);
             }
 
-            return response;
+            return StatusCode((int)response.StatusCode, response);
         }
 
 
         [HttpPost(Name = "CreateVehicle")]
-        public async Task<ResponseApi<object>> CreateVehicle(VehicleCreateDto createDto, CancellationToken cancellationToken)
+        public async Task<ActionResult<ResponseApi<object>>> CreateVehicle(VehicleCreateDto createDto, CancellationToken cancellationToken)
         {
             ResponseApi<object> response;
             try
             {
                 await _application.CreateAsync(createDto, cancellationToken);
-                response = new ResponseApi<object>(HttpStatusCode.OK, "Success");
+                response = new ResponseApi<object>(HttpStatusCode.Created, "Success");
             }
             catch (VehicleValidationException ex)
             {
@@ -96,11 +96,11 @@ namespace VF.Api.Features.Vehicle
                 response = new ResponseApi<object>(HttpStatusCode.InternalServerError, message);
             }
 
-            return response;
+            return StatusCode((int)response.StatusCode, response);
         }
 
         [HttpPut(Name = "EditVehicle")]
-        public async Task<ResponseApi<object>> EditVehicle(VehicleEditDto editDto, CancellationToken cancellationToken)
+        public async Task<ActionResult<ResponseApi<object>>> EditVehicle(VehicleEditDto editDto, CancellationToken cancellationToken)
         {
             ResponseApi<object> response;
             try
@@ -112,13 +112,13 @@ namespace VF.Api.Features.Vehicle
             {
                 string message = $"Vehicle not found: {ex.ToString()}";
                 _logger.LogError(ex, message);
-                response = new ResponseApi<object>(HttpStatusCode.InternalServerError, message);
+                response = new ResponseApi<object>(HttpStatusCode.BadRequest, message);
             }
             catch (VehicleValidationException ex)
             {
                 string message = $"Validation error: {ex.ToString()}";
                 _logger.LogError(ex, message);
-                response = new ResponseApi<object>(HttpStatusCode.InternalServerError, message);
+                response = new ResponseApi<object>(HttpStatusCode.BadRequest, message);
             }
             catch (Exception ex)
             {
@@ -127,7 +127,7 @@ namespace VF.Api.Features.Vehicle
                 response = new ResponseApi<object>(HttpStatusCode.InternalServerError, message);
             }
 
-            return response;
+            return StatusCode((int)response.StatusCode, response);
         }
 
 

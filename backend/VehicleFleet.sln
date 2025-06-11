@@ -15,7 +15,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{6E3E4B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D79EE90A-42F9-4283-953A-72DAC44BBE2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VF.Tests", "VF.Tests\VF.Tests.csproj", "{31978357-00EB-4618-B707-692C09A2B41B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VF.Tests", "VF.Tests\VF.Tests.csproj", "{31978357-00EB-4618-B707-692C09A2B41B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{C5E58CB4-D43E-438E-A1DF-3F6ECB6421F2}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

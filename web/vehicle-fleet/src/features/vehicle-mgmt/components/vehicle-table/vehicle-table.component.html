@@ -1,0 +1,51 @@
+<p-table [value]="vehicles">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Chassis Serie</th>
+            <th>Chassis Number</th>
+            <th>Color</th>
+            <th>Type</th>
+            <th>Passengers</th>
+            <th style="width: 15em;">
+
+                <div class="flex align-items-center">
+                    <span>Actions</span>
+
+                    <button pButton 
+                    type="button" 
+                    label="Create" 
+                    icon="pi pi-plus" 
+                    class="p-button-success ml-3"
+                    (click)="beginCreate()"></button>
+                </div>
+
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-vehicle>
+        <tr>
+            <td>{{ vehicle.chassisId.serie }}</td>
+            <td>{{ vehicle.chassisId.number }}</td>
+            <td>{{ vehicle.color }}</td>
+            <td>{{ vehicle.type }}</td>
+            <td>{{ vehicle.numberOfPassengers }}</td>
+            <td>
+                <button pButton 
+                    type="button" 
+                    label="Edit" 
+                    icon="pi pi-pencil" 
+                    class="p-button-info ml-3"
+                    (click)="beginEdit(vehicle)"></button>
+            </td>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <tr >
+            <td colspan="6" class="text-center">
+                <span *ngIf="vehicles.length === 0 && !loading()">No vehicles found.</span>
+                <loading *ngIf="loading()"></loading>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

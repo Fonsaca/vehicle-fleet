@@ -1,0 +1,30 @@
+version: '3.8'
+
+networks:
+  vf-network:
+    driver: bridge
+
+services:
+  vfapi:
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    image: vfapi
+    container_name: vfapi
+    ports:
+      - "25001:8080"
+    networks:
+      - vf-network
+    restart: unless-stopped
+
+  vfweb:
+    build:
+      context: ./web/vehicle-fleet/
+      dockerfile: Dockerfile
+    image: vfweb
+    container_name: vfweb
+    ports:
+      - "25000:80"
+    networks:
+      - vf-network
+    restart: unless-stopped
